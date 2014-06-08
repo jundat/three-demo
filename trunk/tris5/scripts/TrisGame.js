@@ -1966,7 +1966,7 @@ function updateTotalBet(){
     percentTotal=0;
     var value3=oldTotalBet;
     var value4=totalBet;
-    if(value1!=value2)
+    if(value3!=value4)
     {
         var _percent=0;
         effectTotalBet=setInterval(function(){EffectTotalBet(value3,value4)},20);
