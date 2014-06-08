@@ -469,7 +469,7 @@ function buildDialog(){
 	var dialogCont = new createjs.Container();
 	
 	//hinh nen cua ung dung.
-	var bg = new createjs.Bitmap("images/dialog/back_black.png");
+	var bg = new createjs.Bitmap("images/dialog/popup_base.png");
 	bg.regX = 450/2;
 	bg.regY = 300/2;
 	dialogCont.addChild(bg);

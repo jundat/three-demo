@@ -2,7 +2,7 @@ var DEFAULT_MIN_BET = 10;
 var DEFAULT_MAX_BET = 50;
 
 
-var BET_TIME_IN_SECONDS = 120;
+var BET_TIME_IN_SECONDS = 30;
 
 var CARD_IDS = [
 	"k",10,
