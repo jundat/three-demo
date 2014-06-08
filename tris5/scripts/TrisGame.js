@@ -492,8 +492,8 @@ function buildDialog(){
 	dialogCont.addChild(brand);
 		
 	//thong cao bao chi!
-	dialogCont.message = new createjs.Text("NỘi dung rỗng", "bold 24px Verdana", "#ffffff");
-	dialogCont.message.y = -80;
+	dialogCont.message = new createjs.Text("NỘi dung rỗng", "bold 20px Verdana", "#ffffff");
+	dialogCont.message.y = 0;
 	dialogCont.message.textAlign = "center";
 	dialogCont.message.lineWidth = 400;
 	dialogCont.addChild(dialogCont.message);
