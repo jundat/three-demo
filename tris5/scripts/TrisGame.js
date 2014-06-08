@@ -34,6 +34,8 @@ var lbReadyCounter;
 var circleTimer;
 //
 var BAD_FACE_FRAMERATE = 0.1;
+//
+var BLINK_BET_FRAMERATE = 200;
 //tanlong: end
 
 var statusTF;
@@ -1107,6 +1109,20 @@ function buildPlayerProfile()
 		playerCont.betStatus.bet.y = -10;
 		playerCont.betStatus.addChild(playerCont.betStatus.bet);
 
+		//tanlong: begin
+		playerCont.betStatus.bet.updateBlink = function () {
+			var t = new Date().getTime();
+			if (this.blinkTime == undefined) {
+				this.blinkTime = t;	
+			} else {
+				if (t - this.blinkTime > BLINK_BET_FRAMERATE) {
+					this.visible = ! this.visible;
+					this.blinkTime = t;
+				}
+			};
+		}		
+		//tanlong: end
+
 		playerCont.setBet = function(amount, status, color){
 			var higher = 0;
 			var equaler = 0;
@@ -1309,13 +1325,26 @@ function onClickChips(evt)
 	console.log("type: "+evt.type+" target: "+evt.target+" stageX: "+evt.stageX);
 	console.log(evt.target);
 	console.log(evt.target.chipIdx);
+
+	//tanlong: begin
+	//blink cái số tiền bet
+	var oldBetMore = betMore;
+	var timerCallback = function () {
+		console.log("BET MORE: " + betMore);
+
+		if (betMore > 0) {
+			setTimeout(function () {
+				timerCallback();
+			}, 500);
+		}
+	};
+	//tanlong: end
 	
 	//abc.
 	var chipVal = CHIPS[evt.target.chipIdx];
 	
 	if (betMore + chipVal +playerBets[myPlayerId-1] > maxBet)
 	{
-
 		//tanlong: begin
 		//sound
 		createjs.Sound.play("bet_fail");
@@ -1326,9 +1355,15 @@ function onClickChips(evt)
 	betMore += chipVal;
 	updateBet();
 
+
 	//tanlong: begin
 	//sound
 	createjs.Sound.play("bet1");
+	if (betMore > 0 && oldBetMore == 0) {
+		setTimeout(function () {
+			timerCallback();
+		}, 500);
+	}
 	//tanlong: end
 }
 
@@ -1439,6 +1474,14 @@ function _onTick() {
     			var playerInTurnPos = getPlayerPos(playerInTurn);        		
     			playerConts[playerInTurnPos].progress.setProgress(1 - elapsed/1000/BET_TIME_IN_SECONDS);
     			countDownStatus.text = countdown;
+
+    			//tanlong: begin
+    			// for (var i = 0; i < playerConts.length; i++) {
+    			// 	playerConts[i].betStatus.bet.visible = true;
+    			// };
+
+    			playerConts[playerInTurnPos].betStatus.bet.updateBlink();
+    			//tanlong: end
     		}
     		break;
     	case MatchState.SHOW_RESULT:
