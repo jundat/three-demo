@@ -158,7 +158,7 @@
     </script>
 </head>
 
-<body oncontextmenu="return false">
+<body oncontextmenu="return true">
 	<!-- HEADER -->
 	<div id="header" style="display:none">
 	</div>
