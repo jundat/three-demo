@@ -19,9 +19,9 @@ function init()
 	
 	var parameters = getSearchParameters();
 	
-	// Create configuration object
+	// Create confiation object
 	var config = {};
-	config.host = "192.168.1.11";
+	config.host = "127.0.0.1"; 
 	config.port = 8888;
 	
 	//neu dang chay tren domain widocom
@@ -601,12 +601,21 @@ if (!String.prototype.format) {
 
 function onChooseModeTrain()
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+
 	console.log("onChooseModeTrain");
 	PLAY_MODE = 0;
 	setView("lobby", true);
 }
+
 function onChooseModeReal()
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+
 	console.log("onChooseModeReal");
 	PLAY_MODE = 1;
 	setView("lobby", true);

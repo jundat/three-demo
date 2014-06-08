@@ -87,6 +87,10 @@
  */
 function onSendPublicMessageBtClick_LobbyInRoom(event)
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+	
 	if ($("#gameMsgIn_LB").val() != "")
 	{
 		//check neu van o trong lobby.
@@ -100,8 +104,13 @@ function onSendPublicMessageBtClick_LobbyInRoom(event)
 	}
 	
 }
+
 function onSendPublicMessageBtClick_Lobby(event)
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+
 	console.log("onSendPublicMessageBtClick", event);
 
 	if ($("#publicMsgIn").val() != "")
@@ -118,7 +127,11 @@ function onSendPublicMessageBtClick_Lobby(event)
 }
 
 function onSendPublicMessageBtClick_Room(event)
-{
+{	
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+
 	if ($("#gameMsgIn").val() != "")
 	{
 		var isSent = sfs.send(new SFS2X.Requests.System.PublicMessageRequest($("#gameMsgIn").val()));
@@ -152,6 +165,9 @@ function onDeselectUserBtClick(event)
 
 function clickJoinRoom(room_id)
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
 
 	var password = "";
 	var params =  {"room_id":room_id, "password": password};
@@ -184,6 +200,10 @@ function onDeselectGameBtClick(event)
  */
 function onCreateGameBtClick(event)
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+
 	console.log("onCreateGameBtClick");
 	if(sfs != null && sfs.mySelf != null)
 	{
@@ -211,6 +231,10 @@ function onCreateGameBtClick(event)
  */
 function onCreateGameWinClose(event)
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+
 	//reset cac gia tri.
 	$("#createGameWin").hide();
 }
@@ -221,6 +245,10 @@ function onCreateGameWinClose(event)
  */
 function onDoCreateGameBtClick(event)
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+	
 	if ($("#gameNameIn").val() != "")
 	{
 		var gameName = $("#gameNameIn").val();
@@ -282,6 +310,11 @@ function updateLobby(){
 
 function onSwitchBtnClick(event)
 {
+	
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+	
 //	PLAY_MODE = PLAY_MODE == 1 ? 0 : 1;
 //	
 //	updateLobby();

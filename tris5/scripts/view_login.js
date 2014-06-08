@@ -66,6 +66,10 @@ function onDisconnectBtClick()
  */
 function onLogoutBtClick()
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+	
 	var isSent = sfs.send(new SFS2X.Requests.System.LogoutRequest());
 	
 	if (isSent)

@@ -23,6 +23,15 @@ var matchState = MatchState.WAIT_MORE_PLAYERS;
 
 var playerConts = [];
 
+//tanlong: begin
+var RUN_BLINK = false;
+
+var READY_COUNTER_TIME = 3;
+var bgBlur;
+var lbReadyCounter;
+var circleTimer;
+//tanlong: end
+
 var statusTF;
 
 var disabler;
@@ -59,6 +68,50 @@ var oldMoneyRemain=0;
 var effectTimeOut=null;
 var percentRemainCash=0;
 //thuantq:end
+//tanlong: begin
+//------------------------------------
+// Sounds
+//------------------------------------
+
+function onPreloadCompleted (event) {
+	console.log("onPreloadCompleted: ", event.id, event.src);
+
+	if (event.id == "BGM") {
+		createjs.Sound.play("BGM");
+	};
+}
+
+function preloadSounds () {
+
+	//music
+	createjs.Sound.registerSound({id:"BGM", src:"sounds/BGM.mp3"});
+
+	//effect
+	createjs.Sound.registerSound({id:"bet_fail", src:"sounds/bet_fail.mp3"});
+	createjs.Sound.registerSound({id:"bet1", src:"sounds/bet1.mp3"});
+	createjs.Sound.registerSound({id:"bet3", src:"sounds/bet3.mp3"});
+	createjs.Sound.registerSound({id:"chia_bai", src:"sounds/chia bai.mp3"});
+	createjs.Sound.registerSound({id:"click", src:"sounds/click.mp3"});
+	createjs.Sound.registerSound({id:"equal", src:"sounds/equal.mp3"});
+	createjs.Sound.registerSound({id:"lose", src:"sounds/lose.mp3"});
+	createjs.Sound.registerSound({id:"open_card", src:"sounds/open card.mp3"});
+	createjs.Sound.registerSound({id:"quit", src:"sounds/quit.mp3"});
+	createjs.Sound.registerSound({id:"ready", src:"sounds/ready.mp3"});
+	createjs.Sound.registerSound({id:"surrender", src:"sounds/surrender.mp3"});
+	createjs.Sound.registerSound({id:"up", src:"sounds/up.mp3"});
+	createjs.Sound.registerSound({id:"win", src:"sounds/win.mp3"});
+
+
+	createjs.Sound.addEventListener("fileload", onPreloadCompleted);
+}
+
+preloadSounds();
+//tanlong: end
+
+//------------------------------------
+// Main Game
+//------------------------------------
+
 /**
  * Initialize the game
  */
@@ -175,6 +228,38 @@ function getPlayerPos(playerId)
  */
 function changeState(newState)
 {
+	//tanlong: begin
+	//kiểm tra có phải mới bắt đầu ván đấu
+	//start 3,2,1 ReadyCounter
+	if (matchState == MatchState.WAIT_PLAYERS_READY && newState == MatchState.BET) {
+
+
+		bgBlur.visible = true;
+		lbReadyCounter.visible = true;
+		circleTimer.visible = true;
+
+		var timerCallback = function () {
+			lbReadyCounter.time -= 1;
+			lbReadyCounter.text = "" + lbReadyCounter.time;
+			if (lbReadyCounter.time > 0) {
+				setTimeout(function() {
+					timerCallback();
+				}, 1000);
+			} else {
+				bgBlur.visible = false;
+				lbReadyCounter.visible = false;
+				circleTimer.visible = false;
+			}
+		}
+
+		setTimeout(function() {
+			timerCallback();
+		}, 1000);
+
+	};
+	//tanlong: end
+
+
 	lastUpdateState = new Date().getTime();
 	matchState = newState;
 }
@@ -334,6 +419,11 @@ function dealCard(tween, playerId, turn, cardInfo){
 function tweenCallback(card)
 {
 	card.visible = true;
+
+	//tanlong: begin
+	//sound
+	createjs.Sound.play("chia_bai");
+	//tanlong: end
 }
 
 function showCards_down(playerCont)
@@ -786,9 +876,32 @@ function buildGameUI(){
 	dialog.y = canvas.height/2;
 	stage.addChild(dialog);
 
+	//tanlong: begin
+	//--------------------------
+	// Counter
+	//--------------------------
+	bgBlur = new createjs.Shape();
+	bgBlur.graphics.beginFill("rgba(0,0,0,0.6)").drawRect(0, 0, 960, 960);
+	bgBlur.visible = false;
+	stage.addChild(bgBlur);
 
+	circleTimer = new createjs.Bitmap("images/circleTimer.png");
+	circleTimer.regX = 153;	
+	circleTimer.regY = 106;
+	circleTimer.x = 480;
+	circleTimer.y = 320; 
+	circleTimer.visible = false;
+	stage.addChild(circleTimer);
 
-    //thuantq:begin and disable button
+	lbReadyCounter = new createjs.Text("3", "bold 200px Verdana", "fff600");
+	lbReadyCounter.textAlign = "center";
+	lbReadyCounter.x = 480;
+	lbReadyCounter.y = 190;
+	lbReadyCounter.time = READY_COUNTER_TIME;
+	lbReadyCounter.visible = false;
+	stage.addChild(lbReadyCounter);
+	//tanlong: end
+//thuantq:begin and disable button
     for(var i = 0; i < CHIPS.length; i++)
     {
         chipsDisable[i] = new createjs.Container();
@@ -1127,11 +1240,19 @@ function buildPlayerProfile()
 		playerCont.holyPoint.regX = 130/2;
 		playerCont.holyPoint.regY = 32/2;
 		pointCont.addChild(playerCont.holyPoint);
+
+		//tanlong: begin
+		pointCont.white = new createjs.Bitmap("images/new_2/pointDisplay/Blank_White.png");
+		pointCont.white.regX = 205/2;
+		pointCont.white.regY = 40/2;
+		pointCont.white.visible = false;
+		pointCont.addChild(pointCont.white);
+		//tanlong: end
 		
 		playerCont.hidePoint = function() {
 			this.point.visible = false;
 		};
-		playerCont.showPoint = function(maxCardNameId, maxCardTypeId, point){
+		playerCont.showPoint = function(maxCardNameId, maxCardTypeId, point){			
 			this.point.visible = true;
 			
 			var cardName = getCardName(maxCardNameId);
@@ -1173,20 +1294,39 @@ function onClickChips(evt)
 	var chipVal = CHIPS[evt.target.chipIdx];
 	
 	if (betMore + chipVal +playerBets[myPlayerId-1] > maxBet)
-	{		
+	{
+
+		//tanlong: begin
+		//sound
+		createjs.Sound.play("bet_fail");
+		//tanlong: end
+
 		return;
 	}	
 	betMore += chipVal;
-	updateBet();	
+	updateBet();
+
+	//tanlong: begin
+	//sound
+	createjs.Sound.play("bet1");
+	//tanlong: end
 }
 
 function onClickBtnSend (event)
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+	
 	console.log("click send" );
 }
 
 function onClickBetButtons(evt)
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+	
 	switch(evt.target.name)
 	{
 		case "surrender":
@@ -1239,11 +1379,22 @@ function onClickBetButtons(evt)
 //click button leave room!
 function onClickBtnLeave(event)
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+	
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
+
 	leaveRoom();
 }
 
 function onClickBtnRule(event)
 {
+	//tanlong: begin
+	createjs.Sound.play("click");
+	//tanlong: end
 }
 
 
@@ -1341,6 +1492,15 @@ function resetGameBoard(){
 	
 	board.totalBet.visible = false;
 	board.myCash.visible = false;
+
+	//tanlong: begin
+	bgBlur.visible = false;
+	lbReadyCounter.visible = false;
+	circleTimer.visible = false;
+
+	lbReadyCounter.text = "3";
+	lbReadyCounter.time = 3;
+	//tanlong: end
 }
 
 
@@ -1497,9 +1657,11 @@ function onExtensionResponse (evt){
 			moveReceived(params);
 			break;
 		case "ready_response":
+			console.log("ready_response");
 			responsePlayerReady(params);
 			break;
 		case "deal":
+			console.log("deal");
 			responseDealCards(params);
 			break;
 		case "show_card":
@@ -1512,6 +1674,7 @@ function onExtensionResponse (evt){
 			responsePlayerSurrender(params);
 			break;
 		case "beginTurn":
+			console.log("beginTurn");
 			responseBeginTurn(params);
 			break;
 		case "createThreeCardRoom_response":			
@@ -1523,6 +1686,7 @@ function onExtensionResponse (evt){
 			break;
 	}
 }
+
 function responseJoinThreeCardRoom(response){
 	if (response.error == 0)
 		return;
@@ -1600,6 +1764,21 @@ function updatePlayerTurnUI()
 
 function responsePlayerBet(response)
 {
+	//tanlong: begin
+	//sound
+	switch(response.status) {
+		case PlayerStatus.BET_SURRENDER:
+		case PlayerStatus.BET_NO_FOLLOW:
+			createjs.Sound.play("surrender");
+		break;
+
+		case PlayerStatus.BET_NONE:
+		case PlayerStatus.BET_FOLLOW:
+			createjs.Sound.play("bet3");
+		break;
+	}
+	//tanlong: end
+
 	console.log(response);
 	var playerId = response.playerId;
 	var status = response.status;	
@@ -1660,6 +1839,43 @@ function responseShowcards(response)
 	var cards = response.cards;
 	var scores = response.scores;
 	var winner = response.winner;
+
+	//tanlong: begin
+	//sound
+	if (myPlayerId == winner) { 		//win
+		createjs.Sound.play("win");
+	} else { 							//lose
+		createjs.Sound.play("lose");
+	};
+	//tanlong: end
+
+
+	//tanlong: begin
+	var timerCallback = function () {
+
+		if (gameStarted == false) {
+			for (var i = 0; i < playerConts.length; i++) {
+				playerConts[i].point.white.visible = ! playerConts[i].point.white.visible;
+			}
+
+			stage.update();
+
+			if (playerConts[0].point.white.visible) {
+				setTimeout(function () {
+					timerCallback();
+				}, 100);
+			} else {
+				setTimeout(function () {
+					timerCallback();
+				}, 200);
+			};
+		}
+	}
+
+	setTimeout(function () {
+		timerCallback();
+	}, 200);
+	//tanlong: end
 	
 	for (var i = 0; i < 4; i++)
 	{
