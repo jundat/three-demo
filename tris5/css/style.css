@@ -1,0 +1,577 @@
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+}
+
+.input-group {
+    border-collapse: separate;
+    display: table;
+    position: relative;
+}
+
+.input-group .form-control {
+    float: left;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.form-control {
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555555;
+    
+    font-size: 14px;
+    
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    
+}
+
+.form-group{
+	margin: 10px 0;
+}
+
+.btn {
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: thin dotted;
+    outline-offset: -2px;
+}
+.btn:hover, .btn:focus {
+    color: #333333;
+    text-decoration: none;
+}
+
+.btn-info {
+	position: absolute;
+	top: 230px;
+	left: 200px;	
+    background-color: #5BC0DE;
+    border-color: #46B8DA;
+    color: #FFFFFF;
+}
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+    background-color: #39B3D7;
+    border-color: #269ABC;
+    color: #FFFFFF;
+}
+.btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+    background-image: none;
+}
+
+.control-label{
+	width: 100px;
+	display: inline-block;
+	float:left;
+	padding: 6px 10px;
+	text-align: right;	
+}
+
+.input-group-addon {
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    padding: 6px 12px;
+    text-align: center;
+}
+
+.inputNum{
+	width: 30px !important;
+}
+
+body{
+	padding: 0;
+	margin: 0;
+}
+
+.container{
+width:960px !important;
+height:640px !important;
+color:#fff;
+padding:0;
+margin:0 auto;
+}
+.row{
+margin:0;
+padding:0;
+}
+
+.clear{
+	clear: both;
+}
+/* header */
+
+.header_top{
+background:#321b1c;
+height:68px;
+background:url('../images/header_bg.png') no-repeat;
+padding-top:15px;
+
+}
+a.btn-pre{
+display: block;
+width:147px;
+height:43px;
+background:url('../images/btn-pre.png') no-repeat;
+}
+a.btn-pre:hover{
+background:url('../images/btn-pre-hover.png') no-repeat;
+}
+.mode-training{
+display: block;
+background:url('../images/game_mode_training_bg.png') no-repeat;
+width:164px;
+height:43px;
+margin-left:90px;
+}
+.mode-real{
+display: block;
+background:url('../images/game_mode_real.png') no-repeat;
+width:164px;
+height:43px;
+margin-left:90px;
+}
+
+#wp-btn-close{
+width:95px;
+height:43px;
+}
+a.btn-close{
+display: block;
+width:95px;
+height:43px;
+background:url('../images/btn-close.png') no-repeat;
+}
+a.btn-close:hover{
+background:url('../images/btn-close-hover.png') no-repeat;
+}
+#header_info{
+width:415px;
+text-align:right;
+}
+
+.lobby_btn_pre{
+	width:147px;
+	height:43px;	
+	float: left;
+	margin-left: 10px;
+}
+
+.lobby_btn_training{
+	width:164px;
+	height:43px;	
+	float: left;
+}
+
+.lobby_header_info{
+	width:164px;
+	height:43px;	
+	float: left;
+	margin-right: 20px;
+}
+
+.lobby_btn_close{
+	width:95px;
+	height:43px;	
+	float: left;
+}
+
+button{
+	border: none;
+	background: none;
+}
+
+button:hover{
+	cursor: pointer;
+}
+
+/* body */
+
+.frm-left,.frm-right{
+	width: 345px;
+	float:left;
+}
+
+section.wp{
+/* margin-top: -40px; */
+background:url('../images/body_bg.png') repeat;
+padding-bottom:20px;
+}
+.wp-search{
+/* margin-top:25px; */
+}
+.btn-frm{
+margin-top:30px;
+text-align: center;
+}
+.btn-search{
+width:84px;
+height:39px;
+background:url('../images/btn-search.png') no-repeat;
+margin-right:60px;
+}
+.btn-search:hover{
+background:url('../images/btn-search-hover.png') no-repeat;
+}
+.btn-clear{
+width:84px;
+height:39px;
+background:url('../images/btn-clear.png') no-repeat;
+}
+.btn-clear:hover{
+background:url('../images/btn-clear-hover.png') no-repeat;
+}
+.wp-body{
+margin-top:30px;
+}
+
+.wp-left{
+	width: 700px;
+	float: left;
+	padding: 10px;
+}
+
+.wp-right{
+	width: 190px;
+	float: left;
+	margin: auto 10px 0 30px;
+}
+
+.form-input{
+border:2px solid #39b54a;
+/*box-shadow*/
+-webkit-box-shadow:inset 0px 0px 5px 2px rgba(99, 159, 132, 0.75);
+   -moz-box-shadow:inset 0px 0px 5px 2px rgba(99, 159, 132, 0.75);
+        box-shadow:inset 0px 0px 5px 2px rgba(99, 159, 132, 0.75);
+}
+.frm-range-left{
+padding-right:0;
+}
+.frm-range-right{
+padding-left:0;
+}
+.lbl-frm{
+padding:0;
+text-align:center !important;
+}
+.lbl-frm-left{
+text-align:left !important;
+}
+#wp-table{
+height:260px;
+overflow-x:hidden;
+overflow-y:scroll;
+}
+#wp-table table thead{
+background:url('../images/table_heade_bg.png');
+}
+#wp-table table thead tr th{
+border:2px solid #dca511;
+}
+#wp-table table tbody tr td{
+border:2px solid #006838;
+}
+.btn-room{
+width:110px;
+height:35px;
+background:url('../images/btn-room.png') no-repeat;
+margin:10px auto;
+}
+.btn-room:hover{
+background:url('../images/btn-room-hover.png') no-repeat;
+}
+/* right */
+
+.wp-chat{
+background:#12281f;
+/*border-radius*/
+-webkit-border-radius:10px;
+   -moz-border-radius:10px;
+        border-radius:10px;
+width:189px;
+height:34px;
+margin-top:20px;
+}
+.chat-header{
+background:url('../images/chat_header.png') no-repeat;
+width:189px;
+height:34px;
+}
+.chat-body{
+height:440px;
+overflow-x:hidden;
+overflow-y:scroll;
+background:#12281f;
+padding:5px;
+}
+.chat-footer{
+background:#58595b;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+}
+#publicMsgIn{
+width:105px;
+height:30px;
+border: none;
+background:url('../images/messeage_bg.png') no-repeat;
+margin:5px;
+float: left;
+}
+
+input#publicMsgIn {
+	height:19px;	
+}
+
+.btn-message{
+width:43px;
+height:30px;
+background:url('../images/btn-message.png') no-repeat;
+margin:5px auto;
+float: left;
+}
+.btn-message:hover{
+background:url('../images/btn-message-hover.png') no-repeat;
+}
+/* Popup */
+
+.popup{
+position:absolute;
+left:314px;
+top:171px;
+width:332px !important;
+height:320px !important;
+border:2px solid #d4a116;
+/*border-radius*/
+-webkit-border-radius:4px;
+   -moz-border-radius:4px;
+        border-radius:4px;
+}
+#popup_header{
+background:url('../images/popup_header_bg.png') no-repeat;
+width:334px;
+height:31px;
+}
+span.popup_title{
+padding:5px 0 0 15px !important;
+display:inline-block;
+}
+#closeCreateWindowBt{
+background:url('../images/popup_btn_close.png') no-repeat;
+width:22px;
+height:22px;
+margin:4px 0px;
+padding-left: 0;
+}
+#popup_frm{
+padding-top:10px;
+}
+.popup-btn-search{
+width:84px;
+height:39px;
+background:url('../images/popup_btn_search.png') no-repeat;
+margin-right:60px;
+}
+.popup-btn-search:hover{
+background:url('../images/popup_btn_search_hover.png') no-repeat;
+}
+.popup-btn-clear{
+width:84px;
+height:39px;
+background:url('../images/popup_btn_clear.png') no-repeat;
+}
+.popup-btn-clear:hover{
+background:url('../images/popup_btn_clear_hover.png') no-repeat;
+}
+/* mode */
+.wp-mode{
+width:960px;
+height:640px;
+background:url('../images/mode_base.png') no-repeat;
+}
+.mode-btn{
+margin-top:225px;
+}
+.btn-training{
+width:266px;
+height:172px;
+background:url('../images/button_training.png') no-repeat;
+}
+.btn-training:hover{
+width:266px;
+height:172px;
+background:url('../images/button_training_hover.png') no-repeat;
+}
+.btn-real{
+width:266px;
+height:172px;
+background:url('../images/button_real.png') no-repeat;
+margin-left:15px;
+}
+.btn-real:hover{
+width:266px;
+height:172px;
+background:url('../images/button_real_hover.png') no-repeat;
+}
+
+/* joinroom */
+
+.wp-joinroom{
+	position:absolute;
+	left:225px;
+	top:170px; 
+	width:450px !important;
+	height:300px;
+	background:url('../images/back_black.png') no-repeat;	
+}
+
+.wp-joinroom h3{
+	margin: 0;
+}
+
+.lbl{
+	color: #fff;
+}
+
+.wp-input{
+	width: 300px;
+	margin: 20px auto;
+}
+
+
+table {
+    background-color: rgba(0, 0, 0, 0);
+    max-width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td, th {
+    padding: 0;
+}
+
+th {
+    text-align: left;
+}
+.table {
+    margin-bottom: 20px;
+    width: 100%;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: 1px solid #DDDDDD;
+    line-height: 1.42857;
+    padding: 8px;
+    vertical-align: top;
+}
+.table > thead > tr > th {
+    border-bottom: 2px solid #DDDDDD;
+    vertical-align: bottom;
+}
+.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td {
+    border-top: 0 none;
+}
+.table > tbody + tbody {
+    border-top: 2px solid #DDDDDD;
+}
+.table .table {
+    background-color: #FFFFFF;
+}
+.table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
+    padding: 5px;
+}
+.table-bordered {
+    border: 1px solid #DDDDDD;
+}
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 1px solid #DDDDDD;
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    border-bottom-width: 2px;
+}
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: #F9F9F9;
+}
+.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
+    background-color: #F5F5F5;
+}
+table col[class*="col-"] {
+    display: table-column;
+    float: none;
+    position: static;
+}
+table td[class*="col-"], table th[class*="col-"] {
+    display: table-cell;
+    float: none;
+    position: static;
+}
+.table > thead > tr > td.active, .table > tbody > tr > td.active, .table > tfoot > tr > td.active, .table > thead > tr > th.active, .table > tbody > tr > th.active, .table > tfoot > tr > th.active, .table > thead > tr.active > td, .table > tbody > tr.active > td, .table > tfoot > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr.active > th, .table > tfoot > tr.active > th {
+    background-color: #F5F5F5;
+}
+.table-hover > tbody > tr > td.active:hover, .table-hover > tbody > tr > th.active:hover, .table-hover > tbody > tr.active:hover > td, .table-hover > tbody > tr.active:hover > th {
+    background-color: #E8E8E8;
+}
+.table > thead > tr > td.success, .table > tbody > tr > td.success, .table > tfoot > tr > td.success, .table > thead > tr > th.success, .table > tbody > tr > th.success, .table > tfoot > tr > th.success, .table > thead > tr.success > td, .table > tbody > tr.success > td, .table > tfoot > tr.success > td, .table > thead > tr.success > th, .table > tbody > tr.success > th, .table > tfoot > tr.success > th {
+    background-color: #DFF0D8;
+}
+.table-hover > tbody > tr > td.success:hover, .table-hover > tbody > tr > th.success:hover, .table-hover > tbody > tr.success:hover > td, .table-hover > tbody > tr.success:hover > th {
+    background-color: #D0E9C6;
+}
+.table > thead > tr > td.info, .table > tbody > tr > td.info, .table > tfoot > tr > td.info, .table > thead > tr > th.info, .table > tbody > tr > th.info, .table > tfoot > tr > th.info, .table > thead > tr.info > td, .table > tbody > tr.info > td, .table > tfoot > tr.info > td, .table > thead > tr.info > th, .table > tbody > tr.info > th, .table > tfoot > tr.info > th {
+    background-color: #D9EDF7;
+}
+.table-hover > tbody > tr > td.info:hover, .table-hover > tbody > tr > th.info:hover, .table-hover > tbody > tr.info:hover > td, .table-hover > tbody > tr.info:hover > th {
+    background-color: #C4E3F3;
+}
+.table > thead > tr > td.warning, .table > tbody > tr > td.warning, .table > tfoot > tr > td.warning, .table > thead > tr > th.warning, .table > tbody > tr > th.warning, .table > tfoot > tr > th.warning, .table > thead > tr.warning > td, .table > tbody > tr.warning > td, .table > tfoot > tr.warning > td, .table > thead > tr.warning > th, .table > tbody > tr.warning > th, .table > tfoot > tr.warning > th {
+    background-color: #FCF8E3;
+}
+.table-hover > tbody > tr > td.warning:hover, .table-hover > tbody > tr > th.warning:hover, .table-hover > tbody > tr.warning:hover > td, .table-hover > tbody > tr.warning:hover > th {
+    background-color: #FAF2CC;
+}
+.table > thead > tr > td.danger, .table > tbody > tr > td.danger, .table > tfoot > tr > td.danger, .table > thead > tr > th.danger, .table > tbody > tr > th.danger, .table > tfoot > tr > th.danger, .table > thead > tr.danger > td, .table > tbody > tr.danger > td, .table > tfoot > tr.danger > td, .table > thead > tr.danger > th, .table > tbody > tr.danger > th, .table > tfoot > tr.danger > th {
+    background-color: #F2DEDE;
+}
+.table-hover > tbody > tr > td.danger:hover, .table-hover > tbody > tr > th.danger:hover, .table-hover > tbody > tr.danger:hover > td, .table-hover > tbody > tr.danger:hover > th {
+    background-color: #EBCCCC;
+}
+
+.clearfix:before, .clearfix:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical > .btn-group:before, .btn-group-vertical > .btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-footer:before, .modal-footer:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after, .container:after, .container-fluid:after, .row:after, .form-horizontal .form-group:after, .btn-toolbar:after, .btn-group-vertical > .btn-group:after, .nav:after, .navbar:after, .navbar-header:after, .navbar-collapse:after, .pager:after, .panel-body:after, .modal-footer:after {
+    clear: both;
+}
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.pull-right {
+    float: right !important;
+}
+.pull-left {
+    float: left !important;
+}
+

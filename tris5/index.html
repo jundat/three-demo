@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+<!--         <link rel="stylesheet" href="css/normalize.css"> -->
+<!--         <link rel="stylesheet" href="css/main.css"> -->
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    </head>
+    <body>
+    
+        <div id="user_info">
+            <span class="info">プレイヤー名:<b>abcc</b></span>
+            <span class="info">所持金: <b>1.000.000</b></span>
+           
+            <a href="#" class="btn btn-red">ログアウト</a>
+            
+        </div>
+        
+        <div id="wrapper">
+            <div id="wp-left">
+                <div class="panel">
+                    <div class="panel-body">
+                        
+                        <div id="wp-btn">
+                            <div class="buttons">
+                                <a href="#" class="btn btn-red">Free Game - →無料ゲーム</a>
+                                <a href="#" class="btn btn-red">Real Game - →リアルゲーム</a>
+
+                            </div>
+                            <div class="clear"></div><!-- / .clear -->
+                        </div><!-- / #wp-btn -->
+
+                        <form class="form-horizontal" role="form">
+                            <div class="frm-left">
+                                <div class="form-group">
+                                    <label class="control control-label">ルームNo</label>
+                                    <input class="form-control" type="text" name="so_phong">    
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control control-label">設定人数</label>
+                                    <select class="form-control input-small" name="city">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>    
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control control-label">オーナーさん</label>
+                                    <input class="form-control" type="text" name="so_phong">    
+                                </div>
+                                
+                            </div><!-- / .frm-left -->
+
+                            <div class="frm-right">
+                                <div class="form-group">
+                                    <label class="control control-label">開始ベット</label>
+                                    <input class="form-control inputNum" type="text" name="bet-from">
+                                    <span class="input-group-addon">$  &nbsp;   〜</span>
+                                    <input class="form-control inputNum" type="text" name="bet-to">
+                                    <span class="input-group-addon">$</span>
+                                     
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control control-label">ルームデポジット</label>
+                                    <input class="form-control inputNum" type="text" name="bet-from">
+                                    <span class="input-group-addon">$   &nbsp;   〜</span>
+                                    <input class="form-control inputNum" type="text" name="bet-to">
+                                    <span class="input-group-addon">$</span> 
+                                </div>
+                                <div class="form-group">
+                                    <label class="control control-label">ルーム名</label>
+                                    <input class="form-control" type="text" name="so_phong">    
+                                </div>
+                            </div><!-- / .frm-right -->
+                            
+                            <div class="clear"></div><!-- / .clear -->
+
+                            <div class="buttons btn-action">
+                                <button class="btn btn-primary" type="submit">検索</button>
+                                <button class="btn btn-clear" type="reset">クリア</button>
+                            </div><!-- / .btn-action -->   
+
+<script type="text/javascript">
+	if (!String.prototype.format) {
+		  String.prototype.format = function() {
+		    var args = arguments;
+		    return this.replace(/{(\d+)}/g, function(match, number) { 
+		      return typeof args[number] != 'undefined'
+		        ? args[number]
+		        : match
+		      ;
+		    });
+		  };
+	};
+	
+	var COLUMN = [
+	              "id",
+	              "name",
+	              "owner",
+	              "minBet",
+	              "maxBet",
+	              "player",
+	              "status",
+	              "join"
+	              ];
+	
+	function clearRooms()
+	{
+		var table = document.getElementById("tblRoom");
+		
+	}
+	function removeRoom(id)
+	{
+		var room = document.getElementById("room_"+id);
+		room.remove();
+	}
+	function updateRoom(id, field, newVal)
+	{
+		var room_id = "#room_"+id;
+		var room = document.getElementById("room_"+id);
+		if (room == null){
+			console.log("ko thay room");
+			return;
+		}
+			
+		
+		var index = COLUMN.indexOf(field);
+		if (index >= 0)
+		{
+			console.log(room.cells[index].innerHTML, newVal);
+			room.cells[index].innerHTML = newVal;
+		}
+		
+	}
+	function addRoom(id, name, owner, minBet, maxBet, maxPlayer, currentPlayer, status){
+		var view = {};
+		view['id'] = id;
+		view['name'] = name;
+		view['owner'] = owner;
+		view['minBet'] = minBet;
+		view['maxBet'] = maxBet;
+		view['player'] = "{0}/{1}".format( currentPlayer, maxPlayer);
+		view['status'] = status; //waiting... / playing...
+		view['join'] = "";
+		if (status == "waiting")
+		{
+			view['join'] = "<a href='#' onclick=joinRoom({0})>join room</a>".format(view.id);
+		}
+		var table = document.getElementById("tblRoom");
+		var row = table.insertRow(1);
+		row.id = "room_" + id;
+		
+		for(var i = 0; i < COLUMN.length; i++)
+		{
+			var columnName = COLUMN[i];
+			var cell = row.insertCell(i);
+			cell.innerHTML = view[columnName];
+		}
+		
+	}	
+		
+</script>
+                            <!-- table --> 
+                            <div id="wp-table">
+                                <div class="table-responsive">
+                                <table id = "tblRoom" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                            <tr>
+                                                <th>
+                                                     ルームNo
+                                                </th>
+                                                <th>
+                                                     ルーム名
+                                                </th>
+                                                <th>
+                                                     オーナーさん
+                                                </th>
+                                                <th>
+                                                     開始ベット
+                                                </th>
+                                                <th>
+                                                     ルームデポジット
+                                                </th>
+                                                <th>
+                                                     設定人数
+                                                </th>
+                                                <th>
+                                                     →ステータス
+                                                </th>
+                                                <th>
+                                                    →ルームに入り
+                                                </th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                            </tr>
+                                            </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-primary btn-room" style="margin-top:5px;">作成</button>
+
+                            <div class="clear"></div><!-- / .clear -->
+                        </form>
+                    </div><!-- / .panel-body -->
+                </div><!-- / .panel -->    
+            </div><!-- / #wp-left -->
+
+            <div id="wp-right">
+                <div id="wp_chat">
+                    <div id="wp_chat_info">
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                        noi dung chat<br>
+                    </div>
+
+                    <div id="wp_chat_control">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">                                
+                                <div class="col-sm-11">
+                                    <input class="form-control" type="text"  name="name_phong" style="width:118px;">
+                                    <button type="button" class="btn btn-primary">送信</button>
+                                </div>
+                                
+                            </div>    
+                        </form>        
+                    </div>
+
+                </div><!-- / #wp_chat -->
+            </div><!-- / #wp-right -->
+        </div><!-- / #wrapper -->
+         
+   
+
+    </body>
+</html>
