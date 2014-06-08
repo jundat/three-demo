@@ -1968,17 +1968,16 @@ function updateTotalBet(){
     var value4=totalBet;
     if(value3!=value4)
     {
-        var _percent=0;
         effectTotalBet=setInterval(function(){EffectTotalBet(value3,value4)},20);
     }
 }
 //thuantq: begin effect text
 
-function EffectTotalBet(value1,value2)
+function EffectTotalBet(value3,value4)
 {
     if(percentTotal>100)
         percentTotal=100;
-    oldTotalBet=Math.floor(value1+((value2-value1)*percentTotal)/100);
+    oldTotalBet=Math.floor(value3+((value4-value3)*percentTotal)/100);
     board.totalBet.betValue.text= "" + oldTotalBet + "$";
     if(percentTotal<99)
     {
