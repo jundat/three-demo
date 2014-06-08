@@ -89,7 +89,8 @@ function onPreloadCompleted (event) {
 	console.log("onPreloadCompleted: ", event.id, event.src);
 
 	if (event.id == "BGM") {
-		createjs.Sound.play("BGM");
+		createjs.Sound.play("BGM", createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
+		//createjs.Sound.play( src  [interrupt="none"|options]  [delay=0]  [offset=0]  [loop=0]  [volume=1]  [pan=0] ) ;
 	};
 }
 
