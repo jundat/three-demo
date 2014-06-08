@@ -24,8 +24,7 @@
 	<script type="text/javascript" src="libs/createjs-2013.12.12.min.js"></script>	
     <script type="text/javascript" src="libs/tweenjs-0.5.1.min.js"></script>
     <script type="text/javascript" src="libs/soundjs-0.5.2.min.js"></script> <!-- tanlong -->
-    
-	
+
 	<script src="js/jquery.nicescroll.min.js"></script>
 	
 	<!-- Load SFS2X JS API -->
@@ -128,7 +127,7 @@
     </script>
 </head>
 
-<body>
+<body oncontextmenu="return false">
 	<!-- HEADER -->
 	<div id="header" style="display:none">
 	</div>

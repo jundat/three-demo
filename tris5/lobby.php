@@ -82,7 +82,7 @@
 								</div><!-- / .btn-action -->   
 
 								<!-- table --> 
-								<div id="wp-table">
+								<div id="wp-table" style="margin-left:28px;overflow: hidden; outline: none;">
 									<div class="table-responsive">
 									<table id= "tblRoom" class="table table-striped table-bordered table-hover">
 										
