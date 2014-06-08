@@ -73,12 +73,43 @@
 			$("#createGameBt").click(onCreateGameBtClick);
 			$("#switchBt").click (onSwitchBtnClick);
 			$("#logoutBt").click(onLogoutBtClick);
+
+			//tanlong: begin
+			//sự kiện enter trong textbox
+			$('#publicMsgIn').keydown(function (event) {
+			    var keypressed = event.keyCode || event.which;
+			    if (keypressed == 13) {
+					event.preventDefault();
+			        onSendPublicMessageBtClick_Lobby(event);
+			    }
+			});
+			//tanlong: end
 			
 			// Game View
 			$("#sendGameMsgBt").click(onSendPublicMessageBtClick_Room);
 			$("#sendGameMsgBt_LB").click(onSendPublicMessageBtClick_LobbyInRoom);
 			$("#readyGameBt").click(onReadyGameBtClick);
 			$("#startGameBt").click(onStartGameBtClick);
+
+			//tanlong: begin
+			//chat dưới trong room
+			$('#gameMsgIn_LB').keydown(function (event) {
+			    var keypressed = event.keyCode || event.which;
+			    if (keypressed == 13) {
+					event.preventDefault();
+			        onSendPublicMessageBtClick_LobbyInRoom(event);
+			    }
+			});
+
+			//chat trên trong room
+			$('#gameMsgIn').keydown(function (event) {
+			    var keypressed = event.keyCode || event.which;
+			    if (keypressed == 13) {
+					event.preventDefault();
+			        onSendPublicMessageBtClick_Room(event);
+			    }
+			});
+			//tanlong: end
 			
 			// Create new game Popup			
 			$("#doCreateGameBt").click(onDoCreateGameBtClick);
