@@ -66,6 +66,10 @@ var chipsDisable=[];
 var oldMoneyRemain=0;
 var effectTimeOut=null;
 var percentRemainCash=0;
+
+var oldTotalBet=0;
+var effectTotalBet=null;
+var percentTotal=0;
 //thuantq:end
 //tanlong: begin
 //------------------------------------
@@ -163,10 +167,16 @@ function initGame(){
     {
         chipsDisable[i].visible=true;
     }
+    //thuantq :reset variable
     if(effectTimeOut!=null)
         clearInterval(effectTimeOut);
     oldMoneyRemain=0;
-	//render danh sach cac user trong rom.
+    var oldTotalBet=0;
+    if(effectTotalBet!=null)
+        clearInterval(effectTotalBet);
+    var percentTotal=0;
+    //thuantq +end
+    //render danh sach cac user trong rom.
 	var users = sfs.lastJoinedRoom.getUserList();
 	for (var i = 0; i < users.length; i++)
 	{
@@ -1925,7 +1935,7 @@ function calcTotalBet(){
 
 function updateTotalBet(){
 	var totalBet = calcTotalBet();
-	board.totalBet.betValue.text = "" + totalBet + "$";
+	//board.totalBet.betValue.text = "" + totalBet + "$";
 	
 	//update myself bet.
 	board.myCash.total.text = "" +maxBet +"$";
@@ -1942,9 +1952,35 @@ function updateTotalBet(){
     {
         effectTimeOut=setInterval(function(){EffectMoney(value1,value2)},20);
     }
+    //effect total
+    if(effectTotalBet!=null)
+        clearInterval(effectTotalBet);
+    percentTotal=0;
+    var value3=oldTotalBet;
+    var value4=totalBet;
+    if(value1!=value2)
+    {
+        var _percent=0;
+        effectTotalBet=setInterval(function(){EffectTotalBet(value3,value4)},20);
+    }
 }
 //thuantq: begin effect text
 
+function EffectTotalBet(value1,value2)
+{
+    if(percentTotal>100)
+        percentTotal=100;
+    oldTotalBet=Math.floor(value1+((value2-value1)*percentTotal)/100);
+    board.totalBet.betValue.text= "" + oldTotalBet + "$";
+    if(percentTotal<99)
+    {
+        percentTotal+=10;
+    }
+    else
+    {
+        clearInterval(effectTotalBet);
+    }
+}
 function EffectMoney(value1,value2)
 {
     if(percentRemainCash>100)
