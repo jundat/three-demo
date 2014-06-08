@@ -51,12 +51,12 @@ body {
 }
 #login #waiting{
 	position:relative;
-	top: 200px;
-	width: 209px;
-	height: 133px;
+	top: 0px;
+	width: 960px;
+	height: 640px;
 	background-color: #CCCCCC; 
 	display: inline-block;
-	background: url("../images/login_center.png") no-repeat;
+	background: url("../images/connecting_screen.png") no-repeat;
 }
 
 #footer {
