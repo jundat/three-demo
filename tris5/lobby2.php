@@ -38,14 +38,14 @@
                   <div class="row_lobby">
                     <div class="col-xs-6 frm-left">
                       <div class="form-group">
-                        <label class="col-xs-4 control-label" style="white-space: nowrap;">ルームオーナー</label>
+                        <label class="col-xs-4 control-label" style="white-space: nowrap;padding-top: 12px;">ルームオーナー</label>
                         <div class="col-xs-7">
                           <input type="text" class="form-control form-input">
                         </div>
                       </div> 
 
                       <div class="form-group">
-                        <label class="col-xs-4 control-label" style="white-space: nowrap;">ルーム名</label>
+                        <label class="col-xs-4 control-label" style="white-space: nowrap;padding-top: 12px;">ルーム名</label>
                         <div class="col-xs-7">
                           <input type="text" class="form-control form-input">
                         </div>
@@ -57,7 +57,7 @@
                     <div class="col-xs-6 frm-right">
 
                       <div class="form-group">
-                          <label class="control control-label" style="white-space: nowrap;">開始ベット</label>
+                          <label class="control control-label" style="white-space: nowrap;padding-top: 12px;">開始ベット</label>
                           <input class="form-control form-input inputNum" type="text" name="bet-from">
                           <span class="input-group-addon">  &nbsp;   ~</span>
                           <input class="form-control form-input inputNum" type="text" name="bet-to">
@@ -66,7 +66,7 @@
                       </div>
 
                       <div class="form-group">
-                          <label class="control control-label" style="white-space: nowrap;">ルームデポジット</label>
+                          <label class="control control-label" style="white-space: nowrap;padding-top: 12px;">ルームデポジット</label>
                           <input class="form-control form-input inputNum" type="text" name="bet-from">
                           <span class="input-group-addon">  &nbsp;   ~</span>
                           <input class="form-control form-input inputNum" type="text" name="bet-to">
