@@ -1377,21 +1377,6 @@ function onClickChips(evt)
     }
 
 
-	//tanlong: begin
-	//blink cái số tiền bet
-	var oldBetMore = betMore;
-	var timerCallback = function () {
-		console.log("BET MORE: " + betMore);
-
-		if (betMore > 0) {
-			setTimeout(function () {
-				timerCallback();
-			}, 500);
-		}
-	};
-	//tanlong: end
-	
-
 	//abc.
 	var chipVal = CHIPS[evt.target.chipIdx];
 	if (betMore + chipVal +playerBets[myPlayerId-1] > maxBet)
@@ -1410,11 +1395,6 @@ function onClickChips(evt)
 	//tanlong: begin
 	//sound
 	createjs.Sound.play("bet1");
-	if (betMore > 0 && oldBetMore == 0) {
-		setTimeout(function () {
-			timerCallback();
-		}, 500);
-	}
 	//tanlong: end
 }
 
@@ -1527,10 +1507,11 @@ function _onTick() {
     			countDownStatus.text = countdown;
 
     			//tanlong: begin
-    			// for (var i = 0; i < playerConts.length; i++) {
-    			// 	playerConts[i].betStatus.bet.visible = true;
-    			// };
-
+    			for (var i = 0; i < playerConts.length; i++) {
+    				if (playerInTurnPos != i) {
+    					playerConts[i].betStatus.bet.visible = true;
+    				}
+    			};
     			playerConts[playerInTurnPos].betStatus.bet.updateBlink();
     			//tanlong: end
     		}
@@ -1951,6 +1932,13 @@ function responseShowcards(response)
 	var cards = response.cards;
 	var scores = response.scores;
 	var winner = response.winner;
+
+	//tanlong: begin
+	//show all bet, after blink
+	for (var i = 0; i < playerConts.length; i++) {
+		playerConts[i].betStatus.bet.visible = true;
+	};
+	//tanlong: end
 
 	//tanlong: begin
 	//sound
