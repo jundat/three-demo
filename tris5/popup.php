@@ -38,7 +38,7 @@
             </div><!-- / .row -->
 
             <!-- btn -->
-            <div class="row btn-frm text-center" style="margin-top:15px;">
+            <div class="row btn-frm text-center" style="margin-top:10px;">
               <button type="button" id="doCreateGameBt" class="btn popup-btn-search"></button>
               <button type="button" id="cancelBt" class="btn popup-btn-clear"></button>  
             </div><!-- / .row btn-search -->
