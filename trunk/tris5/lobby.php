@@ -27,48 +27,31 @@
 							<div class="form-horizontal" role="form">
 								<div class="frm-left">
 									
-<!-- 									<div class="form-group"> -->
-<!-- 										<label class="control control-label">ルームNo</label> -->
-<!-- 										<input class="form-control" type="text" name="so_phong">     -->
-<!-- 									</div> -->
-
-<!-- 									<div class="form-group"> -->
-<!-- 										<label class="control control-label">設定人数</label> -->
-<!-- 										<select class="form-control input-small" name="max_user"> -->
-<!-- 											<option value="1">1</option> -->
-<!-- 											<option value="2">2</option> -->
-<!-- 											<option value="3">3</option> -->
-<!-- 											<option value="4">4</option> -->
-<!-- 											<option value="5">5</option> -->
-<!-- 											<option value="6">6</option> -->
-<!-- 										</select>     -->
-<!-- 									</div> -->
-
 									<div class="form-group">
 										<label class="control control-label">ルームオーナー</label>
-										<input class="form-control" type="text" name="ten phong">    
+										<input id = "filter_name" class="form-control" type="text" name="ten phong">    
 									</div>
 									<div class="form-group">
 										<label class="control control-label">ルーム名</label>
-										<input class="form-control" type="text" name="ten chu phong">    
+										<input id = "filter_owner"  class="form-control" type="text" name="ten chu phong">    
 									</div>
 								</div><!-- / .frm-left -->
 
 								<div class="frm-right">
 									<div class="form-group">
 										<label class="control control-label">開始ベット</label>
-										<input class="form-control inputNum" type="text" name="bet-from">
+										<input id = "filter_minBet_begin" class="form-control inputNum" type="text" name="bet-from">
 										<span class="input-group-addon">$  &nbsp;   〜</span>
-										<input class="form-control inputNum" type="text" name="bet-to">
+										<input id = "filter_minBet_end" class="form-control inputNum" type="text" name="bet-to">
 										<span class="input-group-addon">$</span>
 										 
 									</div>
 
 									<div class="form-group">
 										<label class="control control-label">ルームデポジット</label>
-										<input class="form-control inputNum" type="text" name="bet-from">
+										<input id = "filter_maxBet_begin" class="form-control inputNum" type="text" name="bet-from">
 										<span class="input-group-addon">$   &nbsp;   〜</span>
-										<input class="form-control inputNum" type="text" name="bet-to">
+										<input id = "filter_maxBet_end"  class="form-control inputNum" type="text" name="bet-to">
 										<span class="input-group-addon">$</span> 
 									</div>
 
