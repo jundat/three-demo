@@ -25,10 +25,15 @@ var playerConts = [];
 
 //tanlong: begin
 var RUN_BLINK = true;
+var BLINK_TIME_OFF = 200;
+var BLINK_TIME_ON = 300;
+//
 var READY_COUNTER_TIME = 3;
 var bgBlur;
 var lbReadyCounter;
 var circleTimer;
+//
+var BAD_FACE_FRAMERATE = 0.1;
 //tanlong: end
 
 var statusTF;
@@ -1050,18 +1055,24 @@ function buildPlayerProfile()
 		//var betS
 		var betIconSpriteSheet =  new createjs.SpriteSheet(
 				{
-				    images: [
+				    "images": [
 				             "images/new_2/status/none.png",
 				             "images/new_2/status/follow.png", 
 				             "images/new_2/status/up.png",
-				             "images/new_2/status/drop.png",
+				             "images/new_2/status/drop.png",				             
+				             "images/new_2/status/drop_white.png"
 				             ],
 				             
-				    frames: { width: 50, height: 50, regX: 50/2, regY: 50/2},    
-				    animations: { none: [0], follow: [1], up: [2], drop: [3] }
+				    "frames": { "width": 50, "height": 50, "regX": 50/2, "regY": 50/2},    
+				    "animations": { "none": [0], "follow": [1], "up": [2], "drop": [3, 4, "drop", BAD_FACE_FRAMERATE] }
 				}
 			);
 		playerCont.betStatus.icon = new createjs.Sprite(betIconSpriteSheet, "follow");
+		
+		//tanlong: begin
+		playerCont.betStatus.icon.framerate = 2;
+		//tanlong: end
+
 		playerCont.betStatus.icon.setStatus = function(playerStatus, up)
 		{
 			var mapStatus = {};
@@ -1075,8 +1086,8 @@ function buildPlayerProfile()
 				var animName = mapStatus[playerStatus];
 				if (playerStatus == PlayerStatus.BET_FOLLOW && up == true)
 					animName = "up";
-			
-				this.gotoAndStop(animName);
+				
+				this.gotoAndPlay(animName);
 			}
 
 
@@ -1391,10 +1402,8 @@ function onClickBtnLeave(event)
 	//tanlong: begin
 	createjs.Sound.play("click");
 	//tanlong: end
-	
-	//tanlong: begin
-	createjs.Sound.play("click");
-	//tanlong: end
+
+	RUN_BLINK = false;
 
 	leaveRoom();
 }
@@ -1503,7 +1512,6 @@ function resetGameBoard(){
 	board.myCash.visible = false;
 
 	//tanlong: begin
-	RUN_BLINK = false;
 	bgBlur.visible = false;
 	lbReadyCounter.visible = false;
 	circleTimer.visible = false;
@@ -1875,11 +1883,11 @@ function responseShowcards(response)
 			if (playerConts[0].point.white.visible) {
 				setTimeout(function () {
 					timerCallback();
-				}, 100);
+				}, BLINK_TIME_OFF);
 			} else {
 				setTimeout(function () {
 					timerCallback();
-				}, 200);
+				}, BLINK_TIME_ON);
 			};
 		}
 	}
