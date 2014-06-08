@@ -194,7 +194,7 @@
 				<div class="gameBarControls">
 					<div id="gameChatAreaPn" style="width:180px;height:200px;overflow: auto;"></div>
 					<div class="vSeparateTop">
- 						<input type="text" id="gameMsgIn"  style="width: 120px;height: 35px;background-color: transparent;color: white;"class="textInput smaller" disabled="true" placeholder="ここにメッセジーを入力"/> 
+ 						<input type="text" id="gameMsgIn"  style="width: 120px;height: 35px;background-color: transparent;color: white;"class="textInput smaller" disabled="true" placeholder="ここに入力"/> 
  						<input type="button" id="sendGameMsgBt" value="送信"/> 
 					</div>
 				</div>
@@ -202,7 +202,7 @@
 				<div class="gameBarControls" style="margin-top: 44px;">
 					<div id="gameChatAreaPn_LB" style="width:180px;height:200px;overflow: auto;"></div>
 					<div class="vSeparateTop">
- 						<input type="text" id="gameMsgIn_LB"  style="width: 120px;height: 35px;background-color: transparent;color: white;"class="textInput smaller" disabled="true" placeholder="ここにメッセジーを入力"/> 
+ 						<input type="text" id="gameMsgIn_LB"  style="width: 120px;height: 35px;background-color: transparent;color: white;"class="textInput smaller" disabled="true" placeholder="ここに入力"/> 
  						<input type="button" id="sendGameMsgBt_LB" value="送信"/> 
 					</div>
 				</div>
