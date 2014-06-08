@@ -429,7 +429,12 @@ background:url('../images/button_training.png') no-repeat;
 .btn-training:hover{
 width:266px;
 height:172px;
-background:url('../images/button_training_hover.png') no-repeat;
+background:url('../images/button_training_over.png') no-repeat;
+}
+.btn-training:active{
+    width:266px;
+    height:172px;
+    background:url('../images/button_training_push.png') no-repeat;
 }
 .btn-real{
 width:266px;
@@ -440,9 +445,13 @@ margin-left:15px;
 .btn-real:hover{
 width:266px;
 height:172px;
-background:url('../images/button_real_hover.png') no-repeat;
+background:url('../images/button_real_over.png') no-repeat;
 }
-
+.btn-real:active{
+    width:266px;
+    height:172px;
+    background:url('../images/button_real_push.png') no-repeat;
+}
 /* joinroom */
 
 .wp-joinroom{
