@@ -14,6 +14,7 @@
 	<!-- Reset styles -->
 	<link href="css/reset.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="shortcut icon" type="image/png" href="images/start_logo.png" />
 	
  	<script type="text/javascript" src="libs/jquery-1.7.2.min.js"></script>
 	
