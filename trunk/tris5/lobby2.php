@@ -93,7 +93,7 @@
 
           <!-- wp-body -->
           <div class="row_lobby wp-body">
-            <div id="wp-table" class="scroll">
+            <div id="wp-table" class="scroll" style="margin-left:28px;overflow: hidden; outline: none;">
               <table id="tblRoom" class="table  table-bordered">
                 <thead>
                   <tr>
