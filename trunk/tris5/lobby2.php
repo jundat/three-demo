@@ -7,7 +7,7 @@
 
           <div class="col-xs-3 lobby_btn_training mode-real" id = "game_mode"></div>
 
-          <div class="col-xs-5 lobby_header_info"  id="header_info">
+          <div class="col-xs-5 lobby_header_info"  id="header_info" style="padding-top: 6px;">
            
             <div class="row_lobby">
               <span class="inline">プレイヤー名:</span>
