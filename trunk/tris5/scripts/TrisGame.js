@@ -77,6 +77,8 @@ var percentRemainCash=0;
 var oldTotalBet=0;
 var effectTotalBet=null;
 var percentTotal=0;
+
+var chipsEffect=[];
 //thuantq:end
 //tanlong: begin
 //------------------------------------
@@ -917,7 +919,7 @@ function buildGameUI(){
 	lbReadyCounter.visible = false;
 	stage.addChild(lbReadyCounter);
 	//tanlong: end
-//thuantq:begin and disable button
+    //thuantq:begin and disable button
     for(var i = 0; i < CHIPS.length; i++)
     {
         chipsDisable[i] = new createjs.Container();
@@ -946,6 +948,37 @@ function buildGameUI(){
         chipsDisable[i].y = 280;
         chipsDisable[i].visible=true;
         board.addChild(chipsDisable[i]);
+    }
+
+    //thuantq:begin and disable button
+    for(var i = 0; i < CHIPS.length; i++)
+    {
+        chipsEffect[i] = new createjs.Container();
+        var chipName = 'chip'+(i);
+        chipsEffect[i][chipName] = new createjs.Container();
+        chipsEffect[i][chipName].x = (i-2)* 65;
+
+        var chipVal = CHIPS[i];
+
+        var chipSpriteName = "tip_"+chipVal;
+        var up = chipSpriteName;
+        //hinh anh
+        chipsEffect[i][chipName].graphic = new createjs.Sprite(TIPS_SPRITE_SHEET, chipSpriteName);
+        chipsEffect[i][chipName].helper = new  createjs.ButtonHelper(
+            chipsEffect[i][chipName].graphic, up, up, up);
+
+
+        chipsEffect[i][chipName].graphic.chipIdx = i;
+        chipsEffect[i][chipName].graphic.regX = 62/2;
+        chipsEffect[i][chipName].graphic.regY = 62/2;
+        chipsEffect[i][chipName].addChild(chipsEffect[i][chipName].graphic);
+
+        chipsEffect[i].addChild(chipsEffect[i][chipName]);
+
+        chipsEffect[i].x = -80;
+        chipsEffect[i].y = 280;
+        chipsEffect[i].visible=false;
+        board.addChild(chipsEffect[i]);
     }
 
     //thuantq:end
@@ -1326,6 +1359,24 @@ function onClickChips(evt)
 	console.log(evt.target);
 	console.log(evt.target.chipIdx);
 
+    var playerInTurnPos = getPlayerPos(playerInTurn);
+    //if(playerInTurn==myPlayerId)
+    {
+        chipsEffect[evt.target.chipIdx].visible=true;
+        var xCome=35-evt.target.chipIdx*4;
+        createjs.Tween
+            .get(chipsEffect[evt.target.chipIdx])
+            .to({scaleX:0.3, scaleY: 0.3,x:xCome,y:110}, 300)
+            .call(function(){
+                chipsEffect[evt.target.chipIdx].scaleX=1;
+                chipsEffect[evt.target.chipIdx].scaleY=1;
+                chipsEffect[evt.target.chipIdx].x = -80;
+                chipsEffect[evt.target.chipIdx].y = 280;
+                chipsEffect[evt.target.chipIdx].visible = false;}
+        );
+    }
+
+
 	//tanlong: begin
 	//blink cái số tiền bet
 	var oldBetMore = betMore;
@@ -1340,9 +1391,9 @@ function onClickChips(evt)
 	};
 	//tanlong: end
 	
+
 	//abc.
 	var chipVal = CHIPS[evt.target.chipIdx];
-	
 	if (betMore + chipVal +playerBets[myPlayerId-1] > maxBet)
 	{
 		//tanlong: begin
