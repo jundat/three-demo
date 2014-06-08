@@ -303,7 +303,7 @@ function updateLobby(){
 	}
 	else {
 		balance = sfs.mySelf.getVariable("tutorial_balance").value;
-		$(".info_balance b").text(balance + "$ (fake)");
+		$(".info_balance b").text(balance + "$ (traning)");
 	}	
 	
 }
