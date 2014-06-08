@@ -24,8 +24,7 @@ var matchState = MatchState.WAIT_MORE_PLAYERS;
 var playerConts = [];
 
 //tanlong: begin
-var RUN_BLINK = false;
-
+var RUN_BLINK = true;
 var READY_COUNTER_TIME = 3;
 var bgBlur;
 var lbReadyCounter;
@@ -1494,6 +1493,7 @@ function resetGameBoard(){
 	board.myCash.visible = false;
 
 	//tanlong: begin
+	RUN_BLINK = false;
 	bgBlur.visible = false;
 	lbReadyCounter.visible = false;
 	circleTimer.visible = false;
@@ -1851,9 +1851,11 @@ function responseShowcards(response)
 
 
 	//tanlong: begin
+	RUN_BLINK = true;
+
 	var timerCallback = function () {
 
-		if (gameStarted == false) {
+		if (RUN_BLINK == true) {
 			for (var i = 0; i < playerConts.length; i++) {
 				playerConts[i].point.white.visible = ! playerConts[i].point.white.visible;
 			}

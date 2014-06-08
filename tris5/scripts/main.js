@@ -21,7 +21,7 @@ function init()
 	
 	// Create confiation object
 	var config = {};
-	config.host = "127.0.0.1"; 
+	config.host = "192.168.1.11"; 
 	config.port = 8888;
 	
 	//neu dang chay tren domain widocom
