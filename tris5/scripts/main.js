@@ -19,9 +19,9 @@ function init()
 	
 	var parameters = getSearchParameters();
 	
-	// Create confiation object
+	// Create configuration object
 	var config = {};
-	config.host = "192.168.1.11";
+	config.host = "127.0.0.1";
 	config.port = 8888;
 	
 	//neu dang chay tren domain widocom
@@ -161,7 +161,7 @@ function onLogout(event)
 
 function onRoomJoinError(event)
 {
-	trace("Room join error: " + event.errorMessage + " (code: " + event.errorCode + ")", true);
+	//trace("Room join error: " + event.errorMessage + " (code: " + event.errorCode + ")", true);
 	
 	// Reset roomlist selection
 	//onRoomSelected(null);
@@ -313,6 +313,7 @@ function setView(viewId, doSwitch)
 {
 	$("#createGameWin").hide();
 	$("#messageGameWin").hide();
+	$("#passwordGameWin").hide();
 	// Check connection/login status to enable interface elements properly
 	if (viewId == "login")
 	{
@@ -494,6 +495,73 @@ function isOnLobby()
 	return false;
 }
 
+function clearSearch()
+{
+	$("#filter_name").val("");
+	$("#filter_owner").val("");
+	
+	$("#filter_minBet_begin").val("");
+	$("#filter_minBet_end").val("");
+	
+	$("#filter_maxBet_begin").val("");
+	$("#filter_maxBet_end").val("");
+		
+	
+	
+	filterMinBet_begin = 0;
+	filterMinBet_end = 0;
+	filterMaxBet_begin = 0;
+	filterMaxBet_end = 0;
+	filterName = "";
+	filterOwner = "";
+	
+	populateRoomsList();
+}
+function applySearch()
+{
+	console.log("apply search");
+	
+	filterMinBet_begin = parseInt($("#filter_minBet_begin").val());
+	filterMinBet_end = parseInt($("#filter_minBet_end").val());
+	
+	filterMaxBet_begin = parseInt($("#filter_maxBet_begin").val());
+	filterMaxBet_end = parseInt($("#filter_maxBet_end").val());
+	
+	filterName = $("#filter_name").val();
+	filterOwner = $("#filter_owner").val();
+		
+	populateRoomsList();
+}
+
+var filterMinBet_begin = 0;
+var filterMinBet_end = 0;//1<<30;
+var filterMaxBet_begin = 0;
+var filterMaxBet_end = 0;//1<<30;
+var filterName = "";
+var filterOwner = "";
+function filterRoom(minBet, maxBet, name, owner)
+{
+	if (minBet < filterMinBet_begin)
+		return false;
+	if (minBet > filterMinBet_end && filterMinBet_end > 0)
+		return false;
+	if (maxBet < filterMaxBet_begin)
+		return false;
+	if (maxBet > filterMaxBet_end && filterMaxBet_end > 0)
+		return false;
+	if (filterName != null && filterName.length  > 0)
+	{
+		if (name.indexOf(filterName) == -1)
+			return false;
+	}
+	if (filterOwner != null && filterOwner.length  > 0)
+	{
+		if (owner.indexOf(filterOwner) == -1)
+			return false;
+	}
+	return true;	
+}
+
 function populateRoomsList()
 {
 	var rooms = sfs.roomManager.getRoomList();
@@ -508,9 +576,7 @@ function populateRoomsList()
 		for (var r in rooms)
 		{
 			var room = rooms[r];
-			
-			
-			
+
 			//!room.isPasswordProtected
 			if (room.isGame  && !room.isHidden)
 			{
@@ -537,9 +603,12 @@ function populateRoomsList()
 						|| statusVar == MatchState.WAIT_PLAYERS_READY){
 					status = "waiting";
 				}
-
-				TB_addRoom(id, name, owner, minBet, maxBet, maxPlayer, currentPlayer, status);
+				var locked = room.isPasswordProtected;
 				
+				if (filterRoom(minBet, maxBet, name, owner))
+					TB_addRoom(id, name, owner, minBet, maxBet, maxPlayer, currentPlayer, status, locked);
+				else 
+					console.log("khong show vi ko du dieu kien bo loc!");
 //				var item = {};
 //				item.html = "<div><p class='itemTitle game'> <strong>" + room.name + "</strong></p>" +
 //							"<p class='itemSub'>Players: " + players + "/" + maxPlayers + 

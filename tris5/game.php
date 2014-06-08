@@ -122,6 +122,20 @@
 				$("#messageGameWin").hide();
 			});
 
+			//passwordGameWin
+			$("#passwordGameWin .btn-info").click(function(){
+				var room_id = $("#passwordGameWin").attr("room_id");				
+				room_id = parseInt(room_id);
+				var password = $("#passwordGameWin #join-password").val();
+				clickJoinRoom(room_id, password);
+				$("#passwordGameWin").hide();
+			});
+
+
+			$("#btnLobbySearchClear").click(clearSearch);
+			$("#btnLobbySearch").click(applySearch);
+			
+			
 			init();
 	    });
 	</script>
@@ -159,7 +173,7 @@
     </script>
 </head>
 
-<body oncontextmenu="return true">
+<body oncontextmenu="return false">
 	<!-- HEADER -->
 	<div id="header" style="display:none">
 	</div>
@@ -228,7 +242,17 @@
 	      </div> 
 	    </div>
 	    
-	    
+	    <div id="passwordGameWin"class="container wp-joinroom">
+	        <div class="form-horizontal text-center" role="form" style="text-align: center;">
+			    <h2><img src="images/start_logo.png" alt=""></h2> 
+		        <h3>Room name</h3> 
+		        <em>Enter Pass To Join Game</em>
+		        <div class="wp-input">
+		          <input type="password" class="form-control form-input" id="join-password">  
+		        </div><!-- / .wp-input -->
+		        <button type="button" class="btn btn-info">Submit</button>
+	        </div>
+	    </div>
 	    
 	</div>
 	

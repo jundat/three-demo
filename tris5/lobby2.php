@@ -40,14 +40,14 @@
                       <div class="form-group">
                         <label class="col-xs-4 control-label" style="white-space: nowrap;padding-top: 12px;">ルームオーナー</label>
                         <div class="col-xs-7">
-                          <input type="text" class="form-control form-input">
+                          <input id = "filter_name" type="text" class="form-control form-input">
                         </div>
                       </div> 
 
                       <div class="form-group">
                         <label class="col-xs-4 control-label" style="white-space: nowrap;padding-top: 12px;">ルーム名</label>
                         <div class="col-xs-7">
-                          <input type="text" class="form-control form-input">
+                          <input id = "filter_owner" type="text" class="form-control form-input">
                         </div>
                       </div>
 
@@ -58,9 +58,9 @@
 
                       <div class="form-group">
                           <label class="control control-label" style="white-space: nowrap;padding-top: 12px;">開始ベット</label>
-                          <input class="form-control form-input inputNum" type="text" name="bet-from">
+                          <input id = "filter_minBet_begin" class="form-control form-input inputNum" type="text" name="bet-from">
                           <span class="input-group-addon">  &nbsp;   ~</span>
-                          <input class="form-control form-input inputNum" type="text" name="bet-to">
+                          <input id = "filter_minBet_end" class="form-control form-input inputNum" type="text" name="bet-to">
                           <span class="input-group-addon"></span>
                            
                       </div>
@@ -69,8 +69,9 @@
                           <label class="control control-label" style="white-space: nowrap;padding-top: 12px;">ルームデポジット</label>
                           <input class="form-control form-input inputNum" type="text" name="bet-from">
                           <span class="input-group-addon">  &nbsp;   ~</span>
-                          <input class="form-control form-input inputNum" type="text" name="bet-to">
+                          <input id = "filter_maxBet_end" class="form-control form-input inputNum" type="text" name="bet-to">
                           <span class="input-group-addon"></span>
+                           
                       </div>
 
                       
@@ -82,8 +83,8 @@
 
                   <!-- btn -->
                   <div class="row_lobby btn-frm text-center">                    
-                    <button type="button" class="btn btn-search"></button>
-                    <button type="button" class="btn btn-clear"></button>  
+                    <button type="button" id="btnLobbySearch" class="btn btn-search"></button>
+                    <button type="button" id="btnLobbySearchClear" class="btn btn-clear"></button>  
                   </div><!-- / .row_lobby btn-search -->
               </form>  
 

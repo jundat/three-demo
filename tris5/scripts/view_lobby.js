@@ -1,73 +1,81 @@
-	var COLUMN = [
-	              //"id",
-	              "name",
-	              "owner",
-	              "minBet",
-	              "maxBet",
-	              "player",
-	              "status",
-	              "join"
-	              ];
+var COLUMN = [
+              //"id",
+              "name",
+              "owner",
+              "minBet",
+              "maxBet",
+              "player",
+              "status",
+              "join"
+              ];
+
+function TB_clearRooms()
+{
+	var rows = $("#tblRoom tr");
+	for (var i = rows.length - 1 ; i > 0; i--)
+	{
+		rows[i].remove();
+	}
+}
+function TB_removeRoom(id)
+{
+	var room = document.getElementById("room_"+id);
+	room.remove();
+}
+function TB_updateRoom(id, field, newVal)
+{
+	var room_id = "#room_"+id;
+	var room = document.getElementById("room_"+id);
+	if (room == null){
+		console.log("ko thay room");
+		return;
+	}
+		
 	
-	function TB_clearRooms()
+	var index = COLUMN.indexOf(field);
+	if (index >= 0)
 	{
-		var rows = $("#tblRoom tr");
-		for (var i = rows.length - 1 ; i > 0; i--)
-		{
-			rows[i].remove();
-		}
+		console.log(room.cells[index].innerHTML, newVal);
+		room.cells[index].innerHTML = newVal;
 	}
-	function TB_removeRoom(id)
-	{
-		var room = document.getElementById("room_"+id);
-		room.remove();
-	}
-	function TB_updateRoom(id, field, newVal)
-	{
-		var room_id = "#room_"+id;
-		var room = document.getElementById("room_"+id);
-		if (room == null){
-			console.log("ko thay room");
-			return;
-		}
-			
-		
-		var index = COLUMN.indexOf(field);
-		if (index >= 0)
-		{
-			console.log(room.cells[index].innerHTML, newVal);
-			room.cells[index].innerHTML = newVal;
-		}
-		
-	}
-	function TB_addRoom(id, name, owner, minBet, maxBet, maxPlayer, currentPlayer, status){
-		var view = {};
-		//view['id'] = id;
-		view['name'] = name;
-		view['owner'] = owner;
-		view['minBet'] = minBet;
-		view['maxBet'] = maxBet;
-		view['player'] = "{0}/{1}".format( currentPlayer, maxPlayer);
-		view['status'] = status; //waiting... / playing...
-		view['join'] = "";
-		if (status == "waiting")
-		{
-			view['join'] = "<a href='#' onclick=clickJoinRoom({0})>プレイ</a>".format(id);
-		}
-		var table = document.getElementById("tblRoom").getElementsByTagName('tbody')[0];;
-		var row = table.insertRow(0);
-		row.id = "room_" + id;
-		
-		for(var i = 0; i < COLUMN.length; i++)
-		{
-			var columnName = COLUMN[i];
-			var cell = row.insertCell(i);
-			cell.innerHTML = view[columnName];
-		}
-		
-	}	
 	
-	function getSFSLobbyRoom()
+}
+function TB_addRoom(id, name, owner, minBet, maxBet, maxPlayer, currentPlayer, status, locked){
+	var view = {};
+	//view['id'] = id;
+	view['name'] = name;
+	view['owner'] = owner;
+	view['minBet'] = minBet;
+	view['maxBet'] = maxBet;
+	view['player'] = "{0}/{1}".format( currentPlayer, maxPlayer);
+	view['status'] = status; //waiting... / playing...
+	if (locked == true){
+		view['status'] = "locked |" + view['status'];
+	}
+	
+	view['join'] = "";
+	if (status == "waiting")
+	{
+		if (locked)
+			view['join'] = "<a href='#' onclick=clickJoinLockedRoom({0},'{1}')>プレイ</a>".format(id, name);
+		else
+			view['join'] = "<a href='#' onclick=clickJoinRoom({0},'')>プレイ</a>".format(id);
+	}
+	
+	var table = document.getElementById("tblRoom").getElementsByTagName('tbody')[0];;
+	var row = table.insertRow(0);
+	row.id = "room_" + id;
+	
+	for(var i = 0; i < COLUMN.length; i++)
+	{
+		var columnName = COLUMN[i];
+		var cell = row.insertCell(i);
+		cell.innerHTML = view[columnName];
+	}
+	
+}
+	
+function getSFSLobbyRoom()
 {
 	var lobbyRoom = null;
 	var joinedRooms = sfs.getJoinedRooms();
@@ -146,33 +154,28 @@ function onDeselectUserBtClick(event)
 	enablePrivateChat(-1);
 }
 
+function clickJoinLockedRoom(room_id, room_name)
+{
+	//clear pasword
+	$("#passwordGameWin #join-password").val("");
+	
+	$("#passwordGameWin").attr("room_id", room_id);
+	$("#passwordGameWin h3").text(room_name);
+	$("#passwordGameWin").show();
+}
+
 /**
  * When a room is selected in the room list, the "Play" and "Watch" buttons are enabled
  */
-//function onRoomSelected(event)
-//{
-//	var doEnable = event != undefined;
-//	
-//	if (!doEnable)
-//	{
-//		selectedRoom = null;
-//		$("#roomList").jqxListBox("clearSelection");
-//	}
-//	
-//	enableButton("#playGameBt", doEnable);
-//	enableButton("#deselectGameBt", doEnable);
-//}
 
-function clickJoinRoom(room_id)
+function clickJoinRoom(room_id, password)
 {
 	//tanlong: begin
 	createjs.Sound.play("click");
 	//tanlong: end
 
-	var password = "";
 	var params =  {"room_id":room_id, "password": password};
 	sfs.send( new SFS2X.Requests.System.ExtensionRequest("joinThreeCardRoom",params));		
-	
 }
 
 //function onPlayGameBtClick(event)
