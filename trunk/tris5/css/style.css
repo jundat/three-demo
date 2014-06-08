@@ -233,6 +233,11 @@ margin-right:60px;
 .btn-search:hover{
 background:url('../images/btn-search-hover.png') no-repeat;
 }
+/*tanlong: begin*/
+.btn-search:active{
+background:url('../images/btn-search-active.png') no-repeat;
+}
+/*tanlong: end*/
 .btn-clear{
 width:84px;
 height:39px;
@@ -241,6 +246,11 @@ background:url('../images/btn-clear.png') no-repeat;
 .btn-clear:hover{
 background:url('../images/btn-clear-hover.png') no-repeat;
 }
+/*tanlong: begin*/
+.btn-clear:active{
+background:url('../images/btn-clear-active.png') no-repeat;
+}
+/*tanlong: end*/
 .wp-body{
 margin-top:30px;
 }
